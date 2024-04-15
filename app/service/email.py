@@ -41,7 +41,6 @@ def send_email(message: str, subject: str):
     para = 'rickteixeira28@gmail.com'
 
     mensagem = MIMEMultipart()
-    mensagem['From'] = 'Stocks Report'
     mensagem['To'] = para
     mensagem['Subject'] = subject
 
