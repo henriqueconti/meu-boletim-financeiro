@@ -1,24 +1,24 @@
 from datetime import datetime
 
 
-def build_message_email(list_acao_object, list_indice_object, news_object_list):
+def build_message_email(stock_object_list, index_object_list, news_object_list):
     subject = 'Relatório Ações {}'.format(datetime.now().strftime('%d-%m-%Y'))
     message = ''
 
-    for indice_object in list_indice_object:
+    for index_object in index_object_list:
         message += '\n{}\nAbertura: {} pontos\nEncerramento: {} pontos\nVariação Diária: {}%\n'.format(
-            indice_object.longName,
-            indice_object.regularMarketOpen,
-            indice_object.regularMarketPrice,
-            indice_object.regularMarketChangePercent
+            index_object.longName,
+            index_object.regularMarketOpen,
+            index_object.regularMarketPrice,
+            index_object.regularMarketChangePercent
         )
 
-    for acao_object in list_acao_object:
+    for stock_object in stock_object_list:
         message += '\nAção: {}\nPreço Abertura: {}\nPreço Encerramento: {}\nVariação Diária: {}%\n'.format(
-            acao_object.symbol,
-            acao_object.regularMarketOpen,
-            acao_object.regularMarketPrice,
-            acao_object.regularMarketChangePercent
+            stock_object.symbol,
+            stock_object.regularMarketOpen,
+            stock_object.regularMarketPrice,
+            stock_object.regularMarketChangePercent
         )
 
     message += '\nPrincipais Notícias\n'
