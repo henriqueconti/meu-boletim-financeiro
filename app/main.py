@@ -14,7 +14,7 @@ async def main():
     stock_object_list, index_object_list = await build_report_stocks()
     news_object_list = await build_report_news()
 
-    build_message_email(stock_object_list, index_object_list)
+    build_message_email(stock_object_list, index_object_list, news_object_list)
 
 
 async def build_report_stocks():

@@ -10,7 +10,7 @@ smtp_password = os.getenv('SMTP_PASS')
 destination_email = os.getenv('DESTINATION_EMAIL')
 
 
-def build_message_email(list_acao_object: list, list_indice_object: list):
+def build_message_email(list_acao_object, list_indice_object, news_object_list):
     subject = 'Relatório Ações {}'.format(datetime.now().strftime('%d-%m-%Y'))
     message = ''
 
@@ -29,6 +29,11 @@ def build_message_email(list_acao_object: list, list_indice_object: list):
             acao_object.regularMarketPrice,
             acao_object.regularMarketChangePercent
         )
+
+    message += '\nPrincipais Notícias\n'
+
+    for news_object in news_object_list:
+        message += '\n{}\nAcesse: {}\n'.format(news_object.title, news_object.url)
 
     send_email(message, subject)
 
