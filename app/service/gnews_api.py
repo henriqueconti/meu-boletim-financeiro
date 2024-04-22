@@ -3,13 +3,13 @@ import requests
 from retry import retry
 from requests.exceptions import Timeout
 
-api_url = os.getenv('BR_API_URL')
+api_url = os.getenv('GNEWS_API_URL')
 
 
 @retry(Timeout)
-def get_stock_info(stock: str) -> dict:
+def get_news_info() -> dict:
     try:
-        response = requests.get(api_url.format(stock))
+        response = requests.get(api_url)
 
         return response.json()
     except Timeout as e:

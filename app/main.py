@@ -1,28 +1,41 @@
 from app.enums.monitored_stocks import MonitoredStocks
 from app.enums.monitored_indexes import MonitoredIndexes
 from app.service.email import build_message_email
-from app.service.br_api import get_infos_stock
+from app.service.gnews_api import get_news_info
+from app.service.br_api import get_stock_info
 from app.models.stock import Stock
 from app.models.index import Index
+from app.models.news import News
 
 
 def build_report_stocks():
-    list_stock_object = []
-    list_index_object = []
+    stock_object_list = []
+    index_object_list = []
 
     for index in MonitoredIndexes:
-        data = get_infos_stock(index.value)
+        data = get_stock_info(index.value)
         index_object = Index.parse_obj(data.get('results')[0])
 
-        list_index_object.append(index_object)
+        index_object_list.append(index_object)
 
     for stock in MonitoredStocks:
-        data = get_infos_stock(stock.value)
+        data = get_stock_info(stock.value)
         stock_object = Stock.parse_obj(data.get('results')[0])
 
-        list_stock_object.append(stock_object)
+        stock_object_list.append(stock_object)
 
-    build_message_email(list_stock_object, list_index_object)
+    build_message_email(stock_object_list, index_object_list)
 
 
-build_report_stocks()
+def build_report_news():
+    news_object_list = []
+
+    news_data = get_news_info()
+
+    for news in news_data.get('articles'):
+        news_object = News.parse_obj(news)
+
+        news_object_list.append(news_object)
+
+
+build_report_news()
