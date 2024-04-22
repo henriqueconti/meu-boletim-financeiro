@@ -2,7 +2,8 @@ import asyncio
 
 from app.enums.monitored_stocks import MonitoredStocks
 from app.enums.monitored_indexes import MonitoredIndexes
-from app.service.email import build_message_email
+from app.service.email import send_email
+from app.utils.message import build_message_email
 from app.service.gnews_api import get_news_info
 from app.service.br_api import get_stock_info
 from app.models.stock import Stock
@@ -14,7 +15,9 @@ async def main():
     stock_object_list, index_object_list = await build_report_stocks()
     news_object_list = await build_report_news()
 
-    build_message_email(stock_object_list, index_object_list, news_object_list)
+    message, subject = build_message_email(stock_object_list, index_object_list, news_object_list)
+
+    send_email(message, subject)
 
 
 async def build_report_stocks():
