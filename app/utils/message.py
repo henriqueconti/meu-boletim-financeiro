@@ -33,6 +33,7 @@ def clear_news_list(news_object_list):
     cleaned_news_object_list = []
 
     for news_object in news_object_list:
-        if 'Bolsa Família' not in news_object.content:
+        if ('Bolsa Família' not in news_object.content) and \
+                ('Day Trade Hoje' not in news_object.title):
             cleaned_news_object_list.append(news_object)
     return cleaned_news_object_list
