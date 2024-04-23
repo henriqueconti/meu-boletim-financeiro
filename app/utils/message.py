@@ -2,7 +2,7 @@ from datetime import datetime
 
 
 def build_message_email(stock_object_list, index_object_list, news_object_list):
-    subject = 'Relatório Ações {}'.format(datetime.now().strftime('%d-%m-%Y'))
+    subject = 'Relatório Mercado Financeiro {}'.format(datetime.now().strftime('%d-%m-%Y'))
     message = ''
 
     for index_object in index_object_list:
