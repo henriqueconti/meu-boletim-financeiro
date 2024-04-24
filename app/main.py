@@ -1,6 +1,9 @@
+import asyncio
+
 from app.enums.monitored_stocks import MonitoredStocks
 from app.enums.monitored_indexes import MonitoredIndexes
-from app.service.email import build_message_email
+from app.service.email import send_email
+from app.utils.message import build_message_email
 from app.service.gnews_api import get_news_info
 from app.service.br_api import get_stock_info
 from app.models.stock import Stock
@@ -8,7 +11,16 @@ from app.models.index import Index
 from app.models.news import News
 
 
-def build_report_stocks():
+async def main():
+    stock_object_list, index_object_list = await build_report_stocks()
+    news_object_list = await build_report_news()
+
+    message, subject = build_message_email(stock_object_list, index_object_list, news_object_list)
+
+    send_email(message, subject)
+
+
+async def build_report_stocks():
     stock_object_list = []
     index_object_list = []
 
@@ -24,10 +36,10 @@ def build_report_stocks():
 
         stock_object_list.append(stock_object)
 
-    build_message_email(stock_object_list, index_object_list)
+    return stock_object_list, index_object_list
 
 
-def build_report_news():
+async def build_report_news():
     news_object_list = []
 
     news_data = get_news_info()
@@ -37,5 +49,8 @@ def build_report_news():
 
         news_object_list.append(news_object)
 
+    return news_object_list
 
-build_report_news()
+
+if __name__ == "__main__":
+    asyncio.run(main())
