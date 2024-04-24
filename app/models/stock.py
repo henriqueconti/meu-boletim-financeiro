@@ -4,7 +4,7 @@ from pydantic import BaseModel, field_validator
 class Stock(BaseModel):
     regularMarketChangePercent: float
     regularMarketPrice: float
-    regularMarketOpen: float
+    regularMarketPreviousClose: float
     symbol: str
 
     @field_validator('*')

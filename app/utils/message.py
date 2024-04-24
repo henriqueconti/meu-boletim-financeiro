@@ -8,7 +8,7 @@ def build_message_email(stock_object_list, index_object_list, news_object_list):
     for index_object in index_object_list:
         message += '\n{}\nAbertura: {} pontos\nEncerramento: {} pontos\nVariação Diária: {}%\n'.format(
             index_object.longName,
-            index_object.regularMarketOpen,
+            index_object.regularMarketPreviousClose,
             index_object.regularMarketPrice,
             index_object.regularMarketChangePercent
         )
@@ -16,7 +16,7 @@ def build_message_email(stock_object_list, index_object_list, news_object_list):
     for stock_object in stock_object_list:
         message += '\nAção: {}\nPreço Abertura: {}\nPreço Encerramento: {}\nVariação Diária: {}%\n'.format(
             stock_object.symbol,
-            stock_object.regularMarketOpen,
+            stock_object.regularMarketPreviousClose,
             stock_object.regularMarketPrice,
             stock_object.regularMarketChangePercent
         )

@@ -5,7 +5,7 @@ class Index(BaseModel):
     longName: str
     regularMarketChangePercent: float
     regularMarketPrice: float
-    regularMarketOpen: float
+    regularMarketPreviousClose: float
 
     @field_validator('*')
     def round_floats(cls, value):
