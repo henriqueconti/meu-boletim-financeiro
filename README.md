@@ -1,22 +1,27 @@
-# Stocks Report
+# Meu Boletim Financeiro
 
 ## Descrição
 
-O **Stocks Report** é uma aplicação desenvolvida em Python que automatiza o envio diário de relatórios por e-mail contendo informações sobre ações específicas e índices das bolsas de valores ao redor do mundo. O relatório inclui dados como os valores das ações no dia, ganhos/perdas e cotações finais.
+**Meu Boletim Financeiro** é uma aplicação desenvolvida em Python que automatiza o envio de boletim diário por e-mail, contendo informações sobre ações específicas e índices das bolsas de valores ao redor do mundo. O boletim inclui dados como os valores das ações no dia, ganhos/perdas e cotações finais.
 
 ## Tecnologias Utilizadas
 
 - Python: A aplicação foi desenvolvida utilizando a linguagem de programação Python, oferecendo flexibilidade e poder computacional para processar e analisar os dados do mercado financeiro.
 
-## Futuras Features
+## Features
 
-Além das informações sobre índices e ações, o **Stocks Report** planeja implementar o envio de notícias relevantes do mercado financeiro no Brasil e no mundo. Essa atualização permitirá aos usuários ficarem atualizados sobre os eventos mais recentes que impactam os mercados financeiros globais.
+- [x] Cotações diárias de Ações/BDR/FII selecionados
+- [x] Cotações diárias de Indíces selecionados
+- [x] Notícias em alta do mercado financeiro
+- [ ] Cotações diárias de moedas selecionadas
+- [ ] Construção/Integração de uma base de dados
 
 ## Integrações Externas
 
 ### Atuais
 
-- **BrApi**: A aplicação se integra atualmente com o BrApi para obter dados precisos e em tempo real sobre ações e índices do mercado financeiro.
+- **BrApi**: A aplicação tem integração com a BrApi para obter dados precisos e em tempo real sobre ações e índices do mercado financeiro;
+- **GNews Api**: A aplicação tem integração com a GNews Api para obter notícias atualizadas do mercado financeiro.
 
 ### Futuras
 
@@ -24,7 +29,7 @@ Além das informações sobre índices e ações, o **Stocks Report** planeja im
 
 ## Como Utilizar
 
-1. Clone o repositório do **Stocks Report**
+1. Clone o repositório do **Meu Boletim Financeiro**
 2. Instale as dependências contidas em app/requirements.txt
 3. Configure as váriaveis de ambiente para o envio dos relatórios
 4. Execute o script main.py para gerar e enviar os relatórios diários
