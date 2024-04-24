@@ -2,13 +2,13 @@ from datetime import datetime
 
 
 def build_message_email(stock_object_list, index_object_list, news_object_list):
-    subject = 'Relatório Ações {}'.format(datetime.now().strftime('%d-%m-%Y'))
+    subject = 'Relatório Mercado Financeiro {}'.format(datetime.now().strftime('%d-%m-%Y'))
     message = ''
 
     for index_object in index_object_list:
         message += '\n{}\nAbertura: {} pontos\nEncerramento: {} pontos\nVariação Diária: {}%\n'.format(
             index_object.longName,
-            index_object.regularMarketOpen,
+            index_object.regularMarketPreviousClose,
             index_object.regularMarketPrice,
             index_object.regularMarketChangePercent
         )
@@ -16,7 +16,7 @@ def build_message_email(stock_object_list, index_object_list, news_object_list):
     for stock_object in stock_object_list:
         message += '\nAção: {}\nPreço Abertura: {}\nPreço Encerramento: {}\nVariação Diária: {}%\n'.format(
             stock_object.symbol,
-            stock_object.regularMarketOpen,
+            stock_object.regularMarketPreviousClose,
             stock_object.regularMarketPrice,
             stock_object.regularMarketChangePercent
         )
@@ -33,6 +33,7 @@ def clear_news_list(news_object_list):
     cleaned_news_object_list = []
 
     for news_object in news_object_list:
-        if 'Bolsa Família' not in news_object.content:
+        if ('Bolsa Família' not in news_object.content) and \
+                ('Day Trade Hoje' not in news_object.title):
             cleaned_news_object_list.append(news_object)
     return cleaned_news_object_list
