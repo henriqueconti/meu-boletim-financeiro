@@ -1,25 +1,17 @@
 from datetime import datetime
 
+today_date = datetime.now().strftime('%d-%m-%Y')
+
 
 def build_message_email(stock_object_list, index_object_list, news_object_list):
-    subject = 'Relatório Mercado Financeiro {}'.format(datetime.now().strftime('%d-%m-%Y'))
+    subject = 'Relatório Mercado Financeiro {}'.format(today_date)
     message = ''
 
     for index_object in index_object_list:
-        message += '\n{}\nAbertura: {} pontos\nEncerramento: {} pontos\nVariação Diária: {}%\n'.format(
-            index_object.longName,
-            index_object.regularMarketPreviousClose,
-            index_object.regularMarketPrice,
-            index_object.regularMarketChangePercent
-        )
+        message += format_messsage('Índice', index_object)
 
     for stock_object in stock_object_list:
-        message += '\nAção: {}\nPreço Abertura: {}\nPreço Encerramento: {}\nVariação Diária: {}%\n'.format(
-            stock_object.symbol,
-            stock_object.regularMarketPreviousClose,
-            stock_object.regularMarketPrice,
-            stock_object.regularMarketChangePercent
-        )
+        message += format_messsage('Ação', stock_object)
 
     message += '\nPrincipais Notícias\n'
 
@@ -27,6 +19,16 @@ def build_message_email(stock_object_list, index_object_list, news_object_list):
         message += '\n{}\nAcesse: {}\n'.format(news_object.title, news_object.url)
 
     return message, subject
+
+
+def format_messsage(object_type, data_object):
+    return '\n{}: {}\nAbertura: {}\nEncerramento: {}\nVariação Diária: {}%\n'.format(
+        object_type,
+        data_object.longName if object_type == "Índice" else data_object.symbol,
+        data_object.regularMarketPreviousClose,
+        data_object.regularMarketPrice,
+        data_object.regularMarketChangePercent
+    )
 
 
 def clear_news_list(news_object_list):
