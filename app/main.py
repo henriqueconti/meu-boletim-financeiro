@@ -1,4 +1,5 @@
 import asyncio
+import time
 
 from app.enums.monitored_stocks import MonitoredStocks
 from app.enums.monitored_indexes import MonitoredIndexes
@@ -53,4 +54,9 @@ async def build_report_news():
 
 
 if __name__ == "__main__":
+    start_time = time.time()
     asyncio.run(main())
+    end_time = time.time()
+
+    total_time = end_time - start_time
+    print("Tempo de execução:", total_time, "segundos")

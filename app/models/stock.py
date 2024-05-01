@@ -1,4 +1,4 @@
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, validator
 
 
 class Stock(BaseModel):
@@ -7,7 +7,7 @@ class Stock(BaseModel):
     regularMarketPreviousClose: float
     symbol: str
 
-    @field_validator('*')
+    @validator('*')
     def round_floats(cls, value):
         if isinstance(value, float):
             return format(value, '.2f')
