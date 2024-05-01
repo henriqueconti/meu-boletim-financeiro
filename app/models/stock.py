@@ -1,4 +1,4 @@
-from pydantic import BaseModel, validator
+from . import BaseModel, validator
 
 
 class Stock(BaseModel):
